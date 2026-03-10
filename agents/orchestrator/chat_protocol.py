@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from uagents import Context, Model, Protocol
+from uagents import Context, Protocol
+from agents.models.models import AgentState
 from uagents_core.contrib.protocols.chat import (
     ChatAcknowledgement,
     ChatMessage,
@@ -9,10 +10,6 @@ from uagents_core.contrib.protocols.chat import (
     TextContent,
     chat_protocol_spec,
 )
-
-
-class Message(Model):
-    text: str
 
 
 def make_chat_protocol(alice_address: str, bob_address: str) -> Protocol:
@@ -30,11 +27,17 @@ def make_chat_protocol(alice_address: str, bob_address: str) -> Protocol:
         )
         ctx.logger.info(f"Received: {text}")
 
+        state = AgentState(
+            session_id=str(msg.msg_id),
+            query=text,
+            user_sender_address=sender,
+        )
+
         if "alice" in text.lower():
-            await ctx.send(alice_address, Message(text=text))
+            await ctx.send(alice_address, state)
             response = "Routing to Alice!"
         elif "bob" in text.lower():
-            await ctx.send(bob_address, Message(text=text))
+            await ctx.send(bob_address, state)
             response = "Routing to Bob!"
         else:
             response = "Mention Alice or Bob in your message and I'll route it to them."
