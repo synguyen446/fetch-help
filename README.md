@@ -46,13 +46,13 @@ make bob
 1. Sign up or sign in to your account on https://agentverse.ai and https://asi1.ai/
 ![step_0_sign_in.png](docs/step_0_sign_in.png)
 ![step_0b_sign_in_asi1.png](docs/step_0b_sign_in_asi1.png)
-1. Open the **Orchestrator Agent Inspector** in your browser **after** you've signed in
+1. Open **all three** agent inspectors in your browser **after** you've signed in
 ![step_1_open_inspector.png](docs/step_1_open_inspector.png)
 2. Click **Connect** 
 ![step_2_connect.png](docs/step_2_connect.png)
 3. Select **Mailbox**
 ![step_3_select_mailbox.png](docs/step_3_select_mailbox.png)
-4. Click **Go to Agent Profile**
+4. On the **Orchestrator** inspector, click **Go to Agent Profile**
 ![step_4_agent_profile.png](docs/step_4_agent_profile.png)
 5. Click **Chat with Agent**
 ![step_5_chat_with_agent.png](docs/step_5_chat_with_agent.png)
