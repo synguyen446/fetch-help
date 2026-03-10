@@ -1,8 +1,8 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from uagents_core.identity import Identity
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../../.env"))
+load_dotenv(find_dotenv())
 
 ALICE_SEED = "soiufisdfkjsjflksdowo24792834"
 BOB_SEED = os.getenv("BOB_SEED_PHRASE")
