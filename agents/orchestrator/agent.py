@@ -1,6 +1,6 @@
-from agents.models.config import ORCHESTRATOR_SEED, ALICE_ADDRESS, BOB_ADDRESS
+from agents.models.config import ORCHESTRATOR_SEED
 from agents.models.models import AgentState
-from agents.orchestrator.chat_protocol import make_chat_protocol, send_agent_result_back_to_user
+from agents.orchestrator.chat_protocol import chat_proto, send_agent_result_back_to_user
 from uagents import Agent, Context
 
 orchestrator = Agent(
@@ -11,7 +11,6 @@ orchestrator = Agent(
     publish_agent_details=True,
 )
 
-chat_proto = make_chat_protocol(ALICE_ADDRESS, BOB_ADDRESS)
 orchestrator.include(chat_proto, publish_manifest=True)
 
 
