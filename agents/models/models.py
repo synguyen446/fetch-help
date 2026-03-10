@@ -1,8 +1,8 @@
 from uagents import Model
 
 
-class AgentState(Model):
-    session_id: str
+class SharedAgentState(Model):
+    chat_session_id: str
     query: str
     user_sender_address: str
     result: str = ""
