@@ -48,9 +48,9 @@ make bob
 ![step_0b_sign_in_asi1.png](docs/step_0b_sign_in_asi1.png)
 1. Open **all three** agent inspectors in your browser **after** you've signed in
 ![step_1_open_inspector.png](docs/step_1_open_inspector.png)
-2. Click **Connect** 
+2. Click **Connect** on each one
 ![step_2_connect.png](docs/step_2_connect.png)
-3. Select **Mailbox**
+3. Select **Mailbox** on each one
 ![step_3_select_mailbox.png](docs/step_3_select_mailbox.png)
 4. On the **Orchestrator** inspector, click **Go to Agent Profile**
 ![step_4_agent_profile.png](docs/step_4_agent_profile.png)
