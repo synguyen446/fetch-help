@@ -43,10 +43,11 @@ make bob
 ```
 
 ## Testing via Agent Inspector
-
-1. Open the **Orchestrator Agent Inspector** in your browser
+1. Sign up or sign in to your account on https://agentverse.ai
+![step_0_sign_in.png](docs/step_0_sign_in.png)
+1. Open the **Orchestrator Agent Inspector** in your browser **after** you've signed in
 ![step_1_open_inspector.png](docs/step_1_open_inspector.png)
-2. Click **Connect** (make sure you're signed in!)
+2. Click **Connect** 
 ![step_2_connect.png](docs/step_2_connect.png)
 3. Select **Mailbox**
 ![step_3_select_mailbox.png](docs/step_3_select_mailbox.png)
