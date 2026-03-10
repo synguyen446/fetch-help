@@ -73,17 +73,3 @@ async def handle_acknowledgement(ctx: Context, sender: str, msg: ChatAcknowledge
 
 def generate_orchestrator_response_from_state(state: SharedAgentState) -> str:
     return state.result
-
-
-async def send_agent_result_back_to_user(ctx: Context, state: SharedAgentState) -> None:
-    await ctx.send(
-        state.user_sender_address,
-        ChatMessage(
-            timestamp=datetime.now(tz=timezone.utc),
-            msg_id=uuid4(),
-            content=[
-                TextContent(type="text", text=state.result),
-                EndSessionContent(type="end-session"),
-            ],
-        ),
-    )

@@ -1,7 +1,11 @@
+from datetime import datetime, timezone
+from uuid import uuid4
+
 from agents.models.config import ORCHESTRATOR_SEED
 from agents.models.models import SharedAgentState
 from agents.orchestrator.chat_protocol import chat_proto, generate_orchestrator_response_from_state
 from uagents import Agent, Context, Model
+from uagents_core.contrib.protocols.chat import ChatMessage, EndSessionContent, TextContent
 
 orchestrator = Agent(
     name="orchestrator",
@@ -68,7 +72,17 @@ async def handle_agent_response(ctx: Context, sender: str, state: SharedAgentSta
     so once a helper agent finishes, we relay the result directly back to the original user.
     """
     response = generate_orchestrator_response_from_state(state)
-    await ctx.send(state.user_sender_address, response)
+    await ctx.send(
+        state.user_sender_address,
+        ChatMessage(
+            timestamp=datetime.now(tz=timezone.utc),
+            msg_id=uuid4(),
+            content=[
+                TextContent(type="text", text=response),
+                EndSessionContent(type="end-session"),
+            ],
+        ),
+    )
 
 
 if __name__ == "__main__":
