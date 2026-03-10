@@ -4,7 +4,7 @@ from uagents_core.identity import Identity
 
 load_dotenv(find_dotenv())
 
-ALICE_SEED = "soiufisdfkjsjflksdowo24792834"
+ALICE_SEED = os.getenv("ALICE_SEED_PHRASE")
 BOB_SEED = os.getenv("BOB_SEED_PHRASE")
 ORCHESTRATOR_SEED = os.getenv("ORCHESTRATOR_SEED_PHRASE")
 
