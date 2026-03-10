@@ -9,13 +9,9 @@ from uagents_core.contrib.protocols.chat import (
     TextContent,
     chat_protocol_spec,
 )
+from response import get_response
 
 chat_proto = Protocol(spec=chat_protocol_spec)
-
-# Override this in your agent file to handle incoming messages.
-# Receives the text of the message, returns a string response.
-async def get_response(text: str) -> str:
-    return "Hello! I received your message."
 
 
 @chat_proto.on_message(ChatMessage)
@@ -28,6 +24,7 @@ async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
     text = " ".join(
         item.text for item in msg.content if isinstance(item, TextContent)
     )
+
     response = await get_response(text)
 
     await ctx.send(
