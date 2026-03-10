@@ -3,8 +3,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../models"))
 
 from config import BOB_SEED
-from uagents import Agent
-import chat_protocol
+from uagents import Agent, Context, Model
 
 bob = Agent(
     name="bob",
@@ -14,17 +13,16 @@ bob = Agent(
     publish_agent_details=True,
 )
 
+class Message(Model):
+    text: str
+
 # -------------------------------------------------------
 # YOUR CODE GOES HERE
-# This function is called whenever bob receives a message.
-# `text` is the incoming message content as a string.
-# Return your response as a string.
+# This handler is called whenever bob receives a message.
 # -------------------------------------------------------
-async def get_response(text: str) -> str:
-    return f"Hey from Bob! You said: {text}"
-
-chat_protocol.get_response = get_response
-bob.include(chat_protocol.chat_proto, publish_manifest=True)
+@bob.on_message(Message)
+async def handle_message(ctx: Context, sender: str, msg: Message):
+    ctx.logger.info(f"Received from {sender}: {msg.text}")
 
 if __name__ == "__main__":
     bob.run()
