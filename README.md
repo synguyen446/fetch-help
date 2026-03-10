@@ -46,7 +46,7 @@ make bob
 
 1. Open the **Orchestrator Agent Inspector** in your browser
 ![step_1_open_inspector.png](docs/step_1_open_inspector.png)
-2. Click **Connect**
+2. Click **Connect** (make sure you're signed in!)
 ![step_2_connect.png](docs/step_2_connect.png)
 3. Select **Mailbox**
 ![step_3_select_mailbox.png](docs/step_3_select_mailbox.png)
