@@ -46,10 +46,13 @@ make bob
 
 1. Open the **Orchestrator Agent Inspector** in your browser
 2. Click **Connect**
+![img.png](img.png)
 3. Select **Mailbox**
-4. Click **OK**
-5. Click **Go to Agent Profile**
-6. Click **Chat with Agent**
+![img_1.png](img_1.png)
+4. Click **Go to Agent Profile**
+![img_2.png](img_2.png)
+5. Click **Chat with Agent**
+![img_3.png](img_3.png)
 
 ### Example messages to try
 
@@ -64,3 +67,4 @@ i want to speak to bob
 ```
 hi
 ```
+![img_4.png](img_4.png)
