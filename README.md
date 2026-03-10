@@ -45,14 +45,15 @@ make bob
 ## Testing via Agent Inspector
 
 1. Open the **Orchestrator Agent Inspector** in your browser
+![step_1_open_inspector.png](docs/step_1_open_inspector.png)
 2. Click **Connect**
-![img.png](img.png)
+![step_2_connect.png](docs/step_2_connect.png)
 3. Select **Mailbox**
-![img_1.png](img_1.png)
+![step_3_select_mailbox.png](docs/step_3_select_mailbox.png)
 4. Click **Go to Agent Profile**
-![img_2.png](img_2.png)
+![step_4_agent_profile.png](docs/step_4_agent_profile.png)
 5. Click **Chat with Agent**
-![img_3.png](img_3.png)
+![step_5_chat_with_agent.png](docs/step_5_chat_with_agent.png)
 
 ### Example messages to try
 
@@ -67,4 +68,4 @@ i want to speak to bob
 ```
 hi
 ```
-![img_4.png](img_4.png)
+![step_6_example_messages.png](docs/step_6_example_messages.png)
