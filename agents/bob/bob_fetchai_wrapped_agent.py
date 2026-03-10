@@ -12,13 +12,21 @@ bob = Agent(
 
 
 def super_cool_bob_workflow(state: SharedAgentState) -> SharedAgentState:
+    """
+    In a real implementation, this is where Bob's specialized agentic workflow lives.
+    Think LangGraph state machines, LangChain pipelines, external API calls, tool use,
+    RAG retrieval — whatever Bob is an expert at. He receives the shared state,
+    executes his workflow against state.query, and writes the final output to
+    state.result before returning. That mutation is how his work gets communicated
+    back to the orchestrator and ultimately to the user.
+    """
     state.result = f"Bob says: {state.query}"
     return state
 
 
 @bob.on_message(SharedAgentState)
-async def handle_message(ctx: Context, sender: str, msg: SharedAgentState):
-    state = super_cool_bob_workflow(msg)
+async def handle_message(ctx: Context, sender: str, state: SharedAgentState):
+    state = super_cool_bob_workflow(state)
     await ctx.send(sender, state)
 
 

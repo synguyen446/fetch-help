@@ -12,13 +12,21 @@ alice = Agent(
 
 
 def super_cool_alice_workflow(state: SharedAgentState) -> SharedAgentState:
+    """
+    In a real implementation, this is where Alice's specialized agentic workflow lives.
+    Think LangGraph state machines, LangChain pipelines, external API calls, tool use,
+    RAG retrieval — whatever Alice is an expert at. She receives the shared state,
+    executes her workflow against state.query, and writes the final output to
+    state.result before returning. That mutation is how her work gets communicated
+    back to the orchestrator and ultimately to the user.
+    """
     state.result = f"Alice says: {state.query}"
     return state
 
 
 @alice.on_message(SharedAgentState)
-async def handle_message(ctx: Context, sender: str, msg: SharedAgentState):
-    state = super_cool_alice_workflow(msg)
+async def handle_message(ctx: Context, sender: str, state: SharedAgentState):
+    state = super_cool_alice_workflow(state)
     await ctx.send(sender, state)
 
 
