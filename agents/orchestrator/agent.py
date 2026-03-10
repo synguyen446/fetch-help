@@ -1,10 +1,6 @@
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../models"))
-
-from config import ORCHESTRATOR_SEED, ALICE_ADDRESS, BOB_ADDRESS
+from agents.models.config import ORCHESTRATOR_SEED, ALICE_ADDRESS, BOB_ADDRESS
 from uagents import Agent
-from chat_protocol import make_chat_protocol
+from agents.orchestrator.chat_protocol import make_chat_protocol
 
 orchestrator = Agent(
     name="orchestrator",

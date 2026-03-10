@@ -1,8 +1,4 @@
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../models"))
-
-from config import ALICE_SEED
+from agents.models.config import ALICE_SEED
 from uagents import Agent, Context, Model
 
 alice = Agent(

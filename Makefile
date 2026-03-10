@@ -1,8 +1,8 @@
 alice:
-	cd agents/alice && python agent.py
+	python -m agents.alice.agent
 
 bob:
-	cd agents/bob && python agent.py
+	python -m agents.bob.agent
 
 orchestrator:
-	cd agents/orchestrator && python agent.py
+	python -m agents.orchestrator.agent
