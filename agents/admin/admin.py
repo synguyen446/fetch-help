@@ -35,7 +35,7 @@ async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
         item.text for item in msg.content if isinstance(item, TextContent)
     )
     ctx.logger.info(f"Received: {text[:100]}")
-    if not text == "Mention a specific agent (e.g., Admin, Bob, Project_Overview, API_Spec, Architecture, Data_Model, DevOps, Requirement, Testing_Strategy, User_Stories) in your message and I'll route it to them."
+    if not text == "Mention a specific agent (e.g., Admin, Bob, Project_Overview, API_Spec, Architecture, Data_Model, DevOps, Requirement, Testing_Strategy, User_Stories) in your message and I'll route it to them.":
         history.append({'role':'user','content':text})
 
 
