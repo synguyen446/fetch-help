@@ -29,10 +29,7 @@ chat_proto = Protocol(spec=chat_protocol_spec)
 
 @chat_proto.on_message(ChatMessage)
 async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
-    await ctx.send(
-        sender,
-        ChatAcknowledgement(timestamp=datetime.now(), acknowledged_msg_id=msg.msg_id),
-    )
+
 
     text = " ".join(
         item.text for item in msg.content if isinstance(item, TextContent)
@@ -42,6 +39,7 @@ async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
     chat_session_id = str(ctx.session)
     state = state_service.get_state(chat_session_id)
 
+    ctx.logger.info(f"Retrieving history...")
     if state is None:
         state = SharedAgentState(
             chat_session_id=chat_session_id,
@@ -49,21 +47,18 @@ async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
             user_sender_address=sender,
         )
         state_service.set_state(chat_session_id, state)
+        state,status = ctx.send_and_wait(sender, state, Response_type= SharedAgentState)
     else:
         state.query = text
+        state,status = ctx.send_and_wait(sender, state, Response_type= SharedAgentState)
+    
+    ctx.logger.info(f"Status: {status}")
 
+    
 
     response = None
     routed = False
-
-    if "@dm1n" in text.lower():
-        await ctx.send(ADMIN_ADDRESS, state)
-        ctx.logger.info("Routing to Admin!")
-        routed = True
-    if "bob" in text.lower():
-        await ctx.send(BOB_ADDRESS, state)
-        ctx.logger.info("Routing to Bob!")
-        routed = True
+ 
     if "agent_po" in text.lower():
         await ctx.send(PROJECT_OVERVIEW_ADDRESS, state)
         ctx.logger.info("Routing to PO!")

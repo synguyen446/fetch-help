@@ -1,4 +1,6 @@
 from uagents import Model
+from typing import List, Dict
+
 
 
 class SharedAgentState(Model):
@@ -21,3 +23,4 @@ class SharedAgentState(Model):
     query: str
     user_sender_address: str
     result: str = ""
+    history: List[Dict[str, str]] = []
