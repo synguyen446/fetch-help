@@ -38,7 +38,7 @@ Instructions:
 from agents.models.config import PROJECT_OVERVIEW_SEED
 from agents.models.models import SharedAgentState
 from uagents import Agent, Context
-from agents.models.llm import Model
+from agents.model.base import BaseAgent
 
 project_overview = Agent(
     name="agent_PO",
@@ -48,17 +48,17 @@ project_overview = Agent(
     publish_agent_details=True,
 )
 
-model = Model(system=SYSTEM_PROMPT)
+model = BaseAgent('agent_PO',system_prompt=SYSTEM_PROMPT)
 
-def project_overview_workflow(state: SharedAgentState) -> SharedAgentState:
+async def project_overview_workflow(state: SharedAgentState) -> SharedAgentState:
     """
     This is where the Project Overview agent's specialized workflow lives.
     It should process state.query (the software idea) and write the project overview document to state.result.
     """
     # Placeholder implementation
     state.query = state.query.replace("@agent1qt0xg9jcgj29ux73zdfa6emmgrvj4zlct5qucplqvvtdezx2yrgejzr0uc0","")
-    state.query = state.query.replace("project_overview","")
-    state.result = model.invoke(state.query)
+    state.query = state.query.replace("agent_po","")
+    state.result = await model.run(state)
     return state
 
 
