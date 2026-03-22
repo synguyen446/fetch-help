@@ -1,10 +1,10 @@
-from agents.models.config import ALICE_SEED
+from agents.models.config import ADMIN_SEED
 from agents.models.models import SharedAgentState
 from uagents import Agent, Context
 
-alice = Agent(
-    name="alice",
-    seed=ALICE_SEED,
+admin = Agent(
+    name="admin",
+    seed=ADMIN_SEED,
     port=8001,
     mailbox=True,
     publish_agent_details=True,
@@ -20,16 +20,16 @@ def super_cool_alice_workflow(state: SharedAgentState) -> SharedAgentState:
     state.result before returning. That mutation is how her work gets communicated
     back to the orchestrator and ultimately to the user.
     """
-    state.result = f"Hello, this is Alice! Your message was: {state.query}"
+    state.result = f"Hello, this is admin"
     return state
 
 
-@alice.on_message(SharedAgentState)
+@admin.on_message(SharedAgentState)
 async def handle_message(ctx: Context, sender: str, state: SharedAgentState):
-    ctx.logger.info(f"Received state from orchestrator: session={state.chat_session_id}, query={state.query!r}")
+    ctx.logger.info(f"Received state from router: session={state.chat_session_id}, query={state.query!r}")
     state = super_cool_alice_workflow(state)
     await ctx.send(sender, state)
 
 
 if __name__ == "__main__":
-    alice.run()
+    admin.run()
